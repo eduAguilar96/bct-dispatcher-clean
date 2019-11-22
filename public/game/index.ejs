@@ -1,0 +1,153 @@
+<html lang="en">
+  <head>
+    <meta charset="UFT-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./index.css">
+    <title> BTC Dispatcher - Game</title>
+  </head>
+  <body>
+    <!-- Nav Bar  -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="../">BCT Dispatcher</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="../../">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../about">About</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="content-center">
+      <!-- Title card -->
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title" id="lobby-name">pene</h3>
+          <h1  class="card-text" id="game-start-text"></h1>
+          <span class="player-counter">
+            <svg id="i-user" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="21" height="21" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+              <path d="M22 11 C22 16 19 20 16 20 13 20 10 16 10 11 10 6 12 3 16 3 20 3 22 6 22 11 Z M4 30 L28 30 C28 21 22 20 16 20 10 20 4 21 4 30 Z" />
+            </svg>
+          <span class="game-player-counter">0/5</span>
+        </div>
+      </div>
+
+      <!-- Pre Game Host Card -->
+      <div id="pre-game-host-card" class="card" style="display: none;">
+        <div class="card-body">
+          <h1 class="card-title">You are the storyteller</h1>
+          <h3 class="card-text">
+            <span class="player-counter">
+              <svg id="i-user" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="21" height="21" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                <path d="M22 11 C22 16 19 20 16 20 13 20 10 16 10 11 10 6 12 3 16 3 20 3 22 6 22 11 Z M4 30 L28 30 C28 21 22 20 16 20 10 20 4 21 4 30 Z" />
+              </svg>
+              <span class="game-player-counter">0/5</span>
+            </span>
+            Player list
+          </h3>
+          <ul id="pre-game-host-player-list" class="list-group list-group-flush">
+          </ul>
+          </br>
+          <h3 class="card-text">
+            <span class="player-counter">
+              <svg id="i-user" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="21" height="21" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                <path d="M22 11 C22 16 19 20 16 20 13 20 10 16 10 11 10 6 12 3 16 3 20 3 22 6 22 11 Z M4 30 L28 30 C28 21 22 20 16 20 10 20 4 21 4 30 Z" />
+              </svg>
+              <span class="game-role-counter">0/5</span>
+            </span>
+            Role Select
+          </h3>
+          <ul id="pre-game-host-role-list" class="list-group list-group-flush">
+            <li class="list-group-item">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+              <img src="../../images/1.png" width="25" height="25" />
+              <label class="form-check-label" for="defaultCheck1">
+                Default checkbox
+              </label>
+            </li>
+          </ul>
+        </div>
+        <button id="game-start-btn" class="btn btn-primary" type="button" name="button">
+          Start Game
+        </button>
+      </div>
+
+      <!-- Current Role Card -->
+      <div id="role-card" class="card" style="display: none;">
+        <img id="role-img" class="card-img-top" src="../../images/1.png"/>
+        <div class="card-body">
+          <h1 id="role-name" class="card-title"></h1>
+          <h3 id="role-desc" class="card-text"></h3>
+        </div>
+        <button id="role-inst-btn" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#role-inst-container" aria-expanded="false" aria-controls="role-inst-container">
+          Role Details
+        </button>
+        <div id="role-inst-container" class="collapse">
+          <ul id="role-inst" class="list-group list-group-flush">
+          </ul>
+        </div>
+      </div>
+
+      <!-- Host Player Refernce Card -->
+      <div id="host-ref-card"class="card" style="display: none;">
+        <div class="card-body">
+          <h3 class="card-title">Players</h3>
+        </div>
+        <ul class="list-group list-group-flush">
+        </ul>
+      </div>
+
+      <!-- Game Players Refernce Card -->
+      <div id="player-ref-card"class="card" style="display: none;">
+        <div class="card-body">
+          <h3 class="card-title">Players</h3>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <svg id="i-heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="21" height="21" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+              <path d="M4 16 C1 12 2 6 7 4 12 2 15 6 16 8 17 6 21 2 26 4 31 6 31 12 28 16 25 20 16 28 16 28 16 28 7 20 4 16 Z" />
+            </svg>
+            <span class="name-container">
+              Gerardo
+            </span>
+            <span class="state-container">
+              - Alive -
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- All role Refernce list  -->
+      <div id="role-list-card" class="card">
+        <button id="role-list-btn" class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#role-list-container" aria-expanded="false" aria-controls="role-list-container">
+          All Roles
+        </button>
+        <div id="role-list-container" class="collapse">
+          <ul id="role-list" class="list-group list-group-flush">
+            <li>Pene</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="comments-card" class="card">
+        <div class="float">
+          <input type="text" class="form-control" id="comment-field" placeholder="comment...">
+          <button type="submit" class="btn btn-primary" id="comment-btn">Submit</button>
+        </div>
+        <ul id="comment-list" class="list-group list-group-flush">
+        </ul>
+      </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>

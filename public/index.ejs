@@ -1,0 +1,183 @@
+<html lang="en">
+  <head>
+    <meta charset="UFT-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./index.css">
+    <title> BTC Dispatcher</title>
+  </head>
+  <body>
+    <!-- NavBar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/">BCT Dispatcher</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- New Lobby Button -->
+    <div id="new-lobby-btn-container">
+      <button class="btn btn-primary btn-sm" id="new-lobby-btn" data-toggle="modal" data-target="#new-lobby-modal">
+        Create Lobby +
+      </button>
+    </div>
+
+    <!-- New Lobby Modal -->
+    <div class="modal fade" id="new-lobby-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="new-lobby-label">New Game Lobby</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="lobby-host">Host username</label>
+                <input type="email" class="form-control" id="lobby-host" aria-describedby="hostHelp" placeholder="Enter username">
+                <small id="hostHelp" class="form-text text-muted">Name you'll use to log back into the lobby</small>
+              </div>
+              <div class="form-group">
+                <label for="lobby-name">Lobby Name</label>
+                <input type="email" class="form-control" id="lobby-name" placeholder="Name">
+              </div>
+              <div class="form-group">
+                <label for="lobby-password">Lobby Password</label>
+                <input type="password" class="form-control" id="lobby-password" placeholder="Password">
+              </div>
+              <div class="form-group">
+                <label for="lobby-max">Player Limit</label>
+                <select class="form-control" id="lobby-max">
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                  <option>11</option>
+                  <option>12</option>
+                  <option>13</option>
+                  <option>14</option>
+                  <option>15</option>
+                  <option>16</option>
+                  <option>17</option>
+                  <option>18</option>
+                  <option>19</option>
+                  <option>20</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button id="btn-create" class="btn btn-primary">Create</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Join Lobby Modal -->
+    <div class="modal fade" id="join-lobby-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="join-lobby-modal-label">Join Lobby "<span id="join-lobby-modal-name"></span>"</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="join-username">Username</label>
+                <input type="email" class="form-control" id="join-lobby-username" aria-describedby="username-help" placeholder="Enter username">
+                <small id="username-help" class="form-text text-muted">Name you'll use to log back into the lobby</small>
+              </div>
+              <div class="form-group">
+                <label for="lobby-password">Lobby Password</label>
+                <input type="password" class="form-control" id="join-lobby-password" placeholder="Password">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button id="btn-join-lobby-modal" class="btn btn-primary">Join</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fav Lobby List -->
+    <div id="fav-list-container" class="list-container">
+      <ul class="list-group top-list">
+
+        <!-- List Element Example -->
+        <li class="list-group-item list-group">
+          <div class="btn-group action-btn-container" role="group" aria-label="Buttons">
+            <button class="btn btn-outline-primary btn-sm" id="btn-join">
+              Join
+            </button>
+            <button class="btn btn-outline-primary btn-sm" id="btn-heart">
+              <svg id="i-heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="21" height="21" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                <path d="M4 16 C1 12 2 6 7 4 12 2 15 6 16 8 17 6 21 2 26 4 31 6 31 12 28 16 25 20 16 28 16 28 16 28 7 20 4 16 Z" />
+              </svg>
+            </button>
+          </div>
+          <span class="player-counter">
+            <svg id="i-user" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="21" height="21" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+              <path d="M22 11 C22 16 19 20 16 20 13 20 10 16 10 11 10 6 12 3 16 3 20 3 22 6 22 11 Z M4 30 L28 30 C28 21 22 20 16 20 10 20 4 21 4 30 Z" />
+            </svg>
+            0/8
+          </span>
+          <span id="name-container">Test name</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Lobby List -->
+    <div id="lobby-list-container" class="list-container">
+      <ul class="list-group top-list">
+
+        <!-- List Element Example -->
+        <li class="list-group-item list-group">
+          <div class="btn-group action-btn-container" role="group" aria-label="Buttons">
+            <button class="btn btn-outline-primary btn-sm" id="btn-join">
+              Join
+            </button>
+            <button class="btn btn-outline-primary btn-sm" id="btn-heart">
+              <svg id="i-heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="21" height="21" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                <path d="M4 16 C1 12 2 6 7 4 12 2 15 6 16 8 17 6 21 2 26 4 31 6 31 12 28 16 25 20 16 28 16 28 16 28 7 20 4 16 Z" />
+              </svg>
+            </button>
+          </div>
+          <span class="player-counter">
+            <svg id="i-user" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="21" height="21" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+              <path d="M22 11 C22 16 19 20 16 20 13 20 10 16 10 11 10 6 12 3 16 3 20 3 22 6 22 11 Z M4 30 L28 30 C28 21 22 20 16 20 10 20 4 21 4 30 Z" />
+            </svg>
+            0/8
+          </span>
+          <span id="name-container">Test name</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
